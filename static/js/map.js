@@ -1,3 +1,15 @@
+var colorGradient = [[0, "#FF4A4A"],
+[0.1,"#FD6E54"],
+[0.2,"#FC925E"],
+[0.3,"#FBB668"],
+[0.4, "#FADA72"],
+[0.5, "#F9FF7D"],
+[0.6, "#CEFF77"],
+[0.7, "#A4FF71"],
+[0.8, "#7AFF6B"],
+[0.9, "#50FF65"],
+[1, "#26FF60"]];
+
 // Reshape data to be used for the map and 
 function prepareData(indicator, year) {
 	var indicatorData = [];
@@ -44,7 +56,7 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 	    },
 		plotOptions: {
 			map: {
-				nullColor: "#47476b"
+				nullColor: "C1E6C5"
 			},
 			enabled: true,
             series: {
@@ -98,8 +110,9 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 			min: metaData["min_value"][ind_num],
 			max: metaData["max_value"][ind_num],
 			tickInterval: metaData["tick_value"][ind_num],
-			minColor: "#ff4d4d",
-			maxColor: "#00e673",
+			stops: colorGradient,
+			/*minColor: "#ff4d4d",
+			maxColor: "#325fff",*/
 			labels: {
 				style: {
 					color: "#FFFFFF"
@@ -117,7 +130,7 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 	        name: metaData["title"][ind_num],
 	        states: {
 	            hover: {
-	                color: '#c7c7d2'
+	                color: '#ccfbff'
 	            }
 	        },
 	        dataLabels: {

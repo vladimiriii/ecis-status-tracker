@@ -115,7 +115,7 @@ var RadarChart = {
 			.style("font-family", "UnicaOne")
 			.style("font-size", "12px")
 			.attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
-			.attr("fill", "white")
+			.attr("fill", "black")
 			.text(labelFormat((j+1)*cfg.maxValue/cfg.levels))
 			.on('mouseover', function (){
 				d3.select(this).style("cursor", "default");
@@ -145,7 +145,7 @@ var RadarChart = {
 		.text(function(d){return d})
 		.style("font-family", "UnicaOne")
 		.style("font-size", "11px")
-		.style("stroke", "white")
+		.style("color", "black")
 		.attr("text-anchor", "middle")
 		.attr("dy", "1.5em")
 		.attr("transform", function(d, i){return "translate(0, -10)"})
@@ -243,7 +243,7 @@ var RadarChart = {
 						}}) // Tooltip text
 					.transition(200)
 					.style('opacity', 1)
-					.style("font-size", "16px");
+					.style("font-size", "14px")
 					
 				z = "polygon."+d3.select(this).attr("class");
 				g.selectAll("polygon")
@@ -268,8 +268,8 @@ var RadarChart = {
 	tooltip = g.append('text')
 		.style('opacity', 0.5)
 		.style('font-family', 'UnicaOne')
-		.style("font-size", "30px")
-		.style('stroke', 'white')
+		.style("font-size", "20px")
+		.style("color", "black")
 		.style("text-anchor", "middle");
 			   
 	}

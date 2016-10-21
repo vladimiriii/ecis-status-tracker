@@ -4,7 +4,7 @@ var year = "2015";
 var activeLoop = false;
 var labels = true;
 var countryColors = ["#7c87ff", "#e87680", "#421a9b"];
-var bg_color = "#313131";
+var bg_color = "#E9E9E9";
 var mapping = {	
 	"Albania":"al",
 	"Armenia": "am",

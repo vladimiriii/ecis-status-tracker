@@ -1,5 +1,5 @@
 // Line Chart specific functions //
-var lineColor = '#FFFFFF';
+var lineColor = '#000000';
 
 function drawLineChart(div, tab, countries, line_colors){
 	var chartTitle = allData['meta']['title'][tab];

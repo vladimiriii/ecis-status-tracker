@@ -6,7 +6,7 @@
 body {
   font-family: UnicaOne, sans-serif;
   padding-right: 0;
-  background-color: #313131;
+  background-color: #E9E9E9;
   font-size:  15px;
 }
 
@@ -16,7 +16,7 @@ body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
+/*
 .bar {
   fill: red;
 }
@@ -42,7 +42,7 @@ body {
   font-size: 15px;
   font-color: #000000;
 }
-
+*/
 /* Radar Chart */
 svg {
   font-size: 13px;
@@ -56,8 +56,8 @@ input[type="radio"].toggle {
 }
 
 .year-btn {
-	border: 1px solid #313131;
-	background-color: #FFFFFF;
+	border: 1px solid #E9E9E9;
+	background-color: #bababa;
 	color: #313131;
 }
 
@@ -73,12 +73,12 @@ input[type="radio"]:checked + .year-btn {
 
 /* Show/Hide Label Checkbox */
 #label-text {
-	color: #FFFFFF;
+	color: #000000;
 }
 
 /* Country Selectors */
 .country-label {
-	color: #FFFFFF;
+	color: #000000;
 	text-align: center;
 }
 
@@ -93,8 +93,8 @@ input[type="radio"]:checked + .year-btn {
 
 /* Modal Styling */
 .modal-content {
-	background-color: #313131;
-	color: white;
+	background-color: #E9E9E9;
+	color: black;
 }
 
 #modalBar {

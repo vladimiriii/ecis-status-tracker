@@ -94,7 +94,7 @@ input[type="radio"]:checked + .year-btn {
     #line-chart {
         margin-left: 0;
     }
-},
+}
 .tooltip {
   z-index: 1151 !important;
 }

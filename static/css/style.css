@@ -91,7 +91,6 @@ input[type="radio"]:checked + .year-btn {
 	border: 1px solid white;
 }
 
-
 /* Modal Styling */
 .modal-content {
 	background-color: #313131;

@@ -54,10 +54,9 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
                         select: function () {
 							//Trigger Modal
                             $('#popup-button').click();
-							console.log(clicked, activeLoop);
 							
 							// Populate Title
-							window.curCountry = this.name
+							window.curCountry = this.name;
                             $('#modal-title').append(curCountry);
 							
 							// Populate Indicator Name

@@ -21,9 +21,15 @@ function createRadarData(data, year, countryList) {
 				if (year in data[key]) {
 					// Standardize Values
 					var rawValue = data[key][year][countryList[i]];
-					var minValue = data["meta"]["min_value"][key];
-					var maxValue = data["meta"]["max_value"][key];
-					var stdValue = (rawValue - minValue)/(maxValue - minValue);
+					if (!isNaN(rawValue)){
+						var minValue = data["meta"]["min_value"][key];
+						var maxValue = data["meta"]["max_value"][key];
+						var stdValue = (rawValue - minValue)/(maxValue - minValue);
+						
+					} else {
+						var stdValue = 0;
+					};
+					
 					var record = {axis:data["meta"]["title"][key], value:stdValue};
 					countryData.push(record);
 				};
@@ -66,7 +72,8 @@ var RadarChart = {
 	var allAxis = (d[0].map(function(i, j){return i.axis}));
 	var total = allAxis.length;
 	var radius = cfg.factor * Math.min(cfg.w/2, cfg.h/2);
-	var Format = d3.format('%');
+	var labelFormat = d3.format(".0%");
+	var tooltipFormat = d3.format(".1%");
 	d3.select(id).select("svg").remove();
 	
 	var g = d3.select(id)
@@ -109,7 +116,7 @@ var RadarChart = {
 			.style("font-size", "12px")
 			.attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
 			.attr("fill", "white")
-			.text(Format((j+1)*cfg.maxValue/cfg.levels))
+			.text(labelFormat((j+1)*cfg.maxValue/cfg.levels))
 			.on('mouseover', function (){
 				d3.select(this).style("cursor", "default");
 			});
@@ -180,12 +187,6 @@ var RadarChart = {
 			.style("fill-opacity", cfg.opacityArea)
 			.on('mouseover', function (d){
 				z = "polygon." + d3.select(this).attr("class");
-				/*tooltip
-					.attr('x', 250)
-					.attr('y', 550)
-					.text(countryList[x]) // Tooltip text
-					.transition(200)
-					.style('opacity', 1);*/
 				g.selectAll("polygon")
 					.transition(200)
 					.style("fill-opacity", 0.1); 
@@ -234,7 +235,7 @@ var RadarChart = {
 				tooltip
 					.attr('x', newX)
 					.attr('y', newY)
-					.text(countryList[x] + " " + Format(d.value)) // Tooltip text
+					.text(countryList[x] + " " + tooltipFormat(d.value)) // Tooltip text
 					.transition(200)
 					.style('opacity', 1)
 					.style("font-size", "16px");
@@ -267,52 +268,4 @@ var RadarChart = {
 		.style("text-anchor", "middle");
 			   
 	}
-};
-
-// Initiate legend
-function initiateLegend(countryList){
-	var svg = d3.select('#radar-legend')
-		.selectAll('svg')
-		.append('svg')
-		.attr("width", w)
-		.attr("height", h)
-	
-	//Create the title for the legend
-	var text = svg.append("text")
-		.attr("class", "title")
-		.attr('transform', 'translate(90,0)') 
-		.attr("x", w - 70)
-		.attr("y", 10)
-		.attr("font-size", "12px")
-		.attr("fill", "white")
-		.text("MOOOOooooooooOOOOOO");
-	
-	//Initiate Legend	
-	var legend = svg.append('g')
-		.attr("class", "legend")
-		.attr("height", 100)
-		.attr("width", 200)
-		.attr('transform', 'translate(90,20)');
-
-	//Create colour squares
-	legend.selectAll('rect')
-		.data(countryList)
-		.enter()
-		.append("rect")
-		.attr("x", w - 65)
-		.attr("y", function(d, i){return i * 20;})
-		.attr("width", 10)
-		.attr("height", 10)
-		.style("fill", function(d, i){return radarColors(i);});
-
-	//Create text next to squares
-	legend.selectAll('text')
-		.data(countryList)
-		.enter()
-		.append("text")
-		.attr("x", w - 52)
-		.attr("y", function(d, i){ return i * 20 + 9;})
-		.attr("font-size", "11px")
-		.attr("fill", "#737373")
-		.text(function(d){return d;});
 };

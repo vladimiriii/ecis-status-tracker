@@ -173,7 +173,7 @@ $(document).ready(function(){
 		rebuildMap(ind_num, year);
 		
 		// If Modal is Open - update Modal
-		if ($('#myModal').hasClass('in')); {
+		if ($('#myModal').is(':visible')) {
 			$('input[name="md-radio"][id=' + year + '][value=' + year + ']').prop("checked", true).change();
 			$('input[name="md-radio"]').removeClass('checked');
 			$('input[name="md-radio"]:checked').addClass('checked');
@@ -231,7 +231,6 @@ $(document).ready(function(){
 		var countries = getCountrySelections();
 		var radarData = createRadarData(allData, year, countries);
 		RadarChart.draw("#radar-chart", radarData, mycfg, countries);
-		initiateLegend();
 		
 		// Refresh Line Chart
 		$("#line-chart").empty();

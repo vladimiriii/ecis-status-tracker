@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ECIS Development Visualizer</title>
+	
+	<!-- Encoding -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- jquery plugin -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="./static/js/underscore-min.js"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Font-awesome for sharing buttons -->
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<!-- Internal CSS -->
+	<link rel="stylesheet" type="text/css" href="./static/css/style.css">
+	
+	<!-- Highcharts and maps JavaScript -->
+	<script src="./static/highcharts/highcharts.js"></script>
+	<script src="./static/highcharts/map.js"></script>
+	<script src="./data/mapdata.js"></script>
+	
+	<!-- Data -->
+	<script src="./data/data.js"></script>
+	
+	<!-- Page Functionality -->
+	<script src="./static/js/page_functionality.js"></script>
+	<script src="./static/js/modal_functions.js"></script>
+	<script src="./static/js/map.js"></script>
+	<script src="./static/js/line_chart.js"></script>
+	
+	<!-- D3 charts -->
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	
+	<!-- Google Analytics -->
+		
+</head>
+<body>
+	<!-- Navbar -->
+	<div class="row">
+	    <nav class="navbar navbar-inverse">
+	        <div class="navbar-header">
+	            <a class="navbar-brand" href="">ECIS Development Visualizer</a>
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	        </div>
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	            <ul class="nav navbar-nav">
+	            	<li class="active"><a href="index.html">Visualizer</a></li>
+	            </ul>
+	            <ul class="nav navbar-nav navbar-right">
+	            	<li><a id="download-data" href="">Download Data</a></li>
+	            </ul>
+	        </div>
+	    </nav>
+	</div>
+	
+	<!-- Content -->
+	<div class="container-fluid">
+		<!-- Map -->
+		<div class="row">
+			<div class="col-md-1">Stuff</div>
+			<div class="col-md-10" style="height:400px"> <!-- Fix height so page position stays consistent -->
+				<div id="container"></div>
+			</div>
+			<div class="col-md-1">Stuff</div>
+		</div>
+		<button id="popup-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" style="display:none;" data-target="#myModal">Open Modal</button>
+		<br>
+		<!-- Year Buttons -->
+		<div class="row">
+			<div class="col-md-12">
+		        <div style="display-inline;">
+		            <div class="no-checkedselector" style="text-align:center;">
+		                <div id="years-radio" class="toggle-container"></div>
+		            </div>
+		        </div>
+			</div>
+		</div>
+		<br>
+		<!-- Autoplay / Indicator Selector / Hide Label Toggle -->
+		<div class="row">
+			<div class="col-md-2"><p></p></div>
+			<div class="col-md-2">
+				<div id="loop-button" class="toggle-container" style="width: 100%; text-align:center;">
+					<button type='button' class='btn' id='loop'><span class='glyphicon glyphicon-play' aria-hidden='true' id='play-stop'></span> Autoplay</button>
+				</div>
+			</div>
+			<div class="col-md-4">
+	            <div class="form-group" style="width: 100%; text-align:center;">
+	                <select id="indicator-select" style="width:100%;" class="form-control"></select>
+	            </div>
+			</div>
+			<div class="col-md-2">
+				<div class="checkbox" style="width: 100%; text-align:center;">
+				  <label><input type="checkbox" id='label-box'><span id='label-text'>Hide Labels</span></label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div> </div>
+			</div>
+		</div>
+		<br>
+		<!-- Country Specific Charts -->
+		<div class="row">
+			<!-- Radar Chart: http://bl.ocks.org/nbremer/6506614 -->
+			<div class="col-md-5" style="text-align:center">
+			   	<div id="radar-chart"></div>
+			</div>
+			<!-- Country Selectors / Refresh Button -->
+			<div class="col-md-2">
+				<br>
+				<div class="country-label">Country 1
+					<div class="color-box" style="background-color: #7c87ff"></div>
+				</div>
+	            <div class="form-group" style="width: 100%; text-align:center;">
+	                <select id="country-select1" style="width:100%;" class="form-control country-select"></select>
+	            </div>
+				<br>
+				<div class="country-label">Country 2
+					<div class="color-box" style="background-color: #e87680"></div>
+				</div>
+	            <div class="form-group">
+	                <select id="country-select2" class="form-control country-select"></select>
+	            </div>
+				<br>
+				<div class="country-label">Country 3
+					<div class="color-box" style="background-color: #421a9b"></div>
+				</div>
+	            <div class="form-group" style="width: 100%; text-align:center;">
+	                <select id="country-select3" style="width:100%;" class="form-control country-select"></select>
+	            </div>
+				<br>
+				<div style="width: 100%; text-align:center;">
+					<button type='button' class='btn' id='country-refresh'><span class='glyphicon glyphicon-refresh' aria-hidden='true'></span> Refresh</button>
+				</div>
+			</div>
+			<!-- Line Chart -->
+			<div class="col-md-5">
+				<div id="line-chart"></div>
+			</div>
+		</div>
+		<br>
+	</div>
+	
+	<!-- Footer -->
+	<div class="row">
+	    <footer class="" style="text-align: center; margin-top:10px; background-color:#363636; color: #FFF;">
+	        <div class="" style="width:100%">
+	            <div class="container">
+	                <div class="row">
+	                    <div class="footer-col col-md-5">
+	                    	<h4>About this Visualization</h4>
+	                        <p>UNDP works throughout the ECIS region to improve governance and reduce conflict. This visualization is designed to allow for the high level tracking of various indicators, showing both where progress is being made, and where further efforts are required.</p>
+	                    </div>
+	                    <div class="footer-col col-md-3">
+	                        <br>
+	                        <h4>Follow us</h4>
+	                        <!-- Twitter -->
+	                        <a href="https://twitter.com/UNDPEurasia" data-toggle="tooltip" title="Twitter" target="_blank" class="share-btn twitter">
+	                            <i class="fa fa-twitter"></i>
+	                        </a>
+
+	                        <!-- Facebook -->
+	                        <a href="https://web.facebook.com/UNDPinEuropeandCIS/?_rdr" data-toggle="tooltip" title="Facebook" target="_blank" class="share-btn facebook">
+	                            <i class="fa fa-facebook"></i>
+	                        </a>
+
+	                        <!-- Page -->
+	                        <a href="http://www.eurasia.undp.org/content/rbec/en/home.html" data-toggle="tooltip" title="UNDP Kosovo" target="_blank" class="share-btn home">
+	                            <i class="fa fa-home"></i>
+	                        </a>
+	                        <br><br>
+	                    </div>
+	                    <div class="footer-col col-md-4">
+	                        <div class="row">
+	                            <div class="col-xs-3"></div>
+	                            <div class="col-xs-6">
+	                                <a href="http://www.eurasia.undp.org/content/rbec/en/home.html" target="_blank"><img src="./static/images/undp-logo.png" alt="" class="partner-img img-responsive"></a>
+	                            </div>
+	                            <div class="col-xs-4"></div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </footer>
+	</div>
+	<!-- Modal -->
+	<div class="row">
+	    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+	        <div class="modal-dialog" style="width:95%;">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="navbar-collapse modal-header">
+	                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
+	                    <h2 id="modal-title" style="text-align: center"></h2>
+	                </div>
+	                <div class="modal-body">
+						<div class="row" >
+							<h4 id="modal-indicator" style="text-align: center"></h4>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+							        <div style="display-inline;">
+							            <div class="no-checkedselector" style="text-align:center;">
+							                <div id="modal-radio" class="toggle-container"></div>
+							            </div>
+							        </div>
+								</div>
+								<br>
+								<div class="row">
+									<div id="modalRadar"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div id="modalBar"></div>
+								</div>
+								<br>
+								<div class="row">
+									<div id="modalLine"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+	                <div class="modal-footer" style="text-align:center;">
+	                    <h4>ECIS Development Visualizer</h4>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<script src="./static/js/radar_chart.js"></script>
+	<script>
+	// Listen for user clicks
+	var clicked = false;
+	$("#years-radio").click(function (e) {
+		if (e.which) {
+			clicked = true;
+			breakLoop();
+		}
+	});
+	</script>
+</body>
+</html>

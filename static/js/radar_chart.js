@@ -235,7 +235,12 @@ var RadarChart = {
 				tooltip
 					.attr('x', newX)
 					.attr('y', newY)
-					.text(countryList[x] + " " + tooltipFormat(d.value)) // Tooltip text
+					.text(function(){
+						if(d.value == 0){
+							return countryList[x] + ": " + "No Data"
+						} else {
+							return countryList[x] + ": " + tooltipFormat(d.value)
+						}}) // Tooltip text
 					.transition(200)
 					.style('opacity', 1)
 					.style("font-size", "16px");

@@ -135,11 +135,7 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 	        },
 	        dataLabels: {
 	            enabled: labels,
-	            format: '{point.name}',
-				style: {
-					color: "black",
-					fontWeight: "normal"
-				}
+	            format: '{point.name}'
 	        }
 	    }]
 	})

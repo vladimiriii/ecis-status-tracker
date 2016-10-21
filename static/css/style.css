@@ -10,10 +10,6 @@ body {
   font-size:  15px;
 }
 
-.navbar-brand {
-	font-size: 30px;
-}
-
 .axis path,
 .axis line {
   fill: none;

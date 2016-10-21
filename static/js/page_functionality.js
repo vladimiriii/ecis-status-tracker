@@ -131,7 +131,7 @@ function getCountrySelections(){
 	$("#country-select2 :selected").text(),
 	$("#country-select3 :selected").text()];
 	return selections
-}
+};
 
 // When page is loaded
 $(document).ready(function(){

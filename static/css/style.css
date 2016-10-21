@@ -16,6 +16,10 @@ body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+.navbar-brand {
+	font-size: 30px;
+}
 /*
 .bar {
   fill: red;

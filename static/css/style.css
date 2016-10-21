@@ -10,6 +10,10 @@ body {
   font-size:  15px;
 }
 
+.navbar-brand {
+	font-size: 30px;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -37,11 +41,11 @@ input[type="radio"].toggle {
 
 .year-btn:hover {
 	color: #FFFFFF;
-	background-color: #7e7e97 !important;;
+	background-color: #7e7e97;
 }
 
 input[type="radio"]:checked + .year-btn {
-    background-color: #47476B !important;
+    background-color: #47476B;
     color: #FFFFFF;
 }
 

@@ -10,6 +10,10 @@ body {
   font-size:  15px;
 }
 
+.navbar-brand {
+	font-size: 30px;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -71,13 +75,19 @@ input[type="radio"]:checked + .year-btn {
 	color: black;
 }
 
-#modalBar {
+#lineBreak {
+	height: 10px;
+	border-bottom: 1px solid black;
+}
+
+#modalColumn {
 	height:40%;
 }
 
 #modalLine {
 	height:40%;
 }
+
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     /* Styles */

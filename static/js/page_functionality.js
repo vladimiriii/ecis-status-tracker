@@ -40,7 +40,7 @@ function buildYearsButtons(indicator, div) {
 	} else {
 	    $("#" + div).empty();
 	    for (var key in allData[indicator]) {
-	        var input_radio = "<input type='radio' class='toggle btn-year' name='md-radio' id='" + key + "' value='"+key+"'><label for='" + key + "' class='btn btn-sm year-btn'>" + key + "</label>";
+	        var input_radio = "<input type='radio' class='toggle btn-year modal-btn-year' name='md-radio' id='" + key + "' value='"+key+"'><label for='" + key + "' class='btn btn-sm year-btn'>" + key + "</label>";
 	        $("#" + div).append(input_radio);
 	    };
 	};
@@ -62,21 +62,26 @@ function checkYear(indicator, year) {
 }
 
 // Build list of indicators
-function buildIndicatorList(data) {
-	$("#indicator-select").empty();
+function buildIndicatorList(data, div) {
+	$("#" + div).empty();
 	var indicatorData = data["meta"]["title"];
 	
 	for (key in indicatorData){
         text = "<option value='" + key + "'>" + indicatorData[key] + "</option>";
-        $("#indicator-select").append(text);
+        $("#" + div).append(text);
 	}
 };
 
 // Function to automatically cycle through years
 function timedLoop(i, time) {
 	setTimeout(function(x) {
-	    var years = $('.btn-year');
-		var max_i = years.length;
+		if ($('#myModal').is(':visible')) {
+		    var years = $('.modal-btn-year');
+			var max_i = years.length;
+		} else {
+		    var years = $('.btn-year');
+			var max_i = years.length;
+		}
 		
 		//Advance loop
 		if (i < max_i && !clicked) {
@@ -92,9 +97,15 @@ function timedLoop(i, time) {
 
 function breakLoop(){
 	activeLoop = false;
-	$("#loop").removeClass('active');
-	$("#play-stop").removeClass('glyphicon glyphicon-stop');
-	$("#play-stop").addClass('glyphicon glyphicon-play');
+	if ($('#myModal').is(':visible')) {
+		$("#modal-loop").removeClass('active');
+		$("#modal-play-stop").removeClass('glyphicon glyphicon-stop');
+		$("#modal-play-stop").addClass('glyphicon glyphicon-play');
+	} else {
+		$("#loop").removeClass('active');
+		$("#play-stop").removeClass('glyphicon glyphicon-stop');
+		$("#play-stop").addClass('glyphicon glyphicon-play');
+	};
 }
 
 // Show/Hide Labels
@@ -140,7 +151,7 @@ $(document).ready(function(){
 	buildYearsButtons(ind_num, 'years-radio');
 	
 	// Get list of indicators
-	buildIndicatorList(allData);
+	buildIndicatorList(allData, "indicator-select");
 	
 	// Populate country dropdowns
 	fillCountryDropdowns();
@@ -178,9 +189,9 @@ $(document).ready(function(){
 			$('input[name="md-radio"]').removeClass('checked');
 			$('input[name="md-radio"]:checked').addClass('checked');
 			
-			// Refresh Bar Chart
-			$("#ModalBar").empty();
-			drawModalBar('modalBar', ind_num, curCountry, year);
+			// Refresh Column Chart
+			$("#ModalColumn").empty();
+			drawModalColumn('modalColumn', ind_num, curCountry, year);
 			
 			// Refresh Radar Chart
 			$("#modalRadar").empty();
@@ -195,7 +206,8 @@ $(document).ready(function(){
 	$("#indicator-select").change(function(){
 		ind_num = $("#indicator-select").val();
 		year = $('input[name="lp-radio"]:checked').val();
-		buildYearsButtons(ind_num);
+		$('#years-radio').empty();
+		buildYearsButtons(ind_num, "years-radio");
 		checkYear(ind_num, year);
 		rebuildMap(ind_num, year);
 		
@@ -240,18 +252,53 @@ $(document).ready(function(){
 	/*------------------------------------
 	Modal Functions
 	------------------------------------*/
+	// Automated Loop
+	$(document).on('click', '#modal-loop', function() {
+		if (activeLoop){
+			clicked = true;
+			breakLoop();
+		} else {
+			clicked = false;
+			activeLoop = true;
+			$(this).addClass('active');
+			$("#modal-play-stop").removeClass('glyphicon glyphicon-play');
+			$("#modal-play-stop").addClass('glyphicon glyphicon-stop');
+			timedLoop(0, 500);
+		};
+	});
+	
+	// Refresh Line chart
+	$("#modal-indicators").change(function(){
+		$('#modal-indicator').empty();
+		$('#modal-radio').empty();
+			
+		ind_num = $("#modal-indicators").val();
+		year = $('input[name="modal-radio"]:checked').val();
+		buildYearsButtons(ind_num, 'modal-radio');
+		checkYear(ind_num, year);
+		$('#modal-indicator').append(allData['meta']['title'][ind_num]);
+		
+		// Refresh Line Chart
+		$('#modalLine').empty();
+		drawModalLine('modalLine', ind_num, curCountry);
+	});
 	
 	// Close Modal
 	$(document).on('click', '#close', function(){
 		rebuildMap(ind_num, year);
+		var ind_num = $('#modal-indicators').val();
 		
 		// Clear Old Data
         $('#modal-title').empty();
 		$('#modal-indicator').empty();
 		$('#modal-radio').empty();
 		$('#modalRadar').empty();
-		$('#modalBar').empty();
+		$('#modalColumn').empty();
 		$('#modalLine').empty();
+		
+		// Refresh Indicator List
+		buildIndicatorList(allData, "indicator-select");
+		$("#indicator-select").val(ind_num);
 		
 		// Refresh Map
 		rebuildMap(ind_num, year);

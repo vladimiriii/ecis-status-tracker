@@ -4,7 +4,7 @@
 
 
 // Bar Chart
-function drawModalBar(div, tab, country, year){
+function drawModalColumn(div, tab, country, year){
 	var yAxis = allData['meta']['y_axis'][tab];
 	var categories = [country, "ECIS Average", "EU Average"];
 	var background = bg_color;
@@ -58,7 +58,7 @@ function drawModalBar(div, tab, country, year){
 	// Feed Data to Chart
 	$('#' + div).highcharts({
 		chart: {
-			type: 'bar',
+			type: 'column',
 			backgroundColor: background, // Background color
             style: {
                 fontFamily: 'UnicaOne',

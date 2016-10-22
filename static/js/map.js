@@ -75,6 +75,10 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 							var ind_num = $('#indicator-select').val();
 							$('#modal-indicator').append(allData['meta']['title'][ind_num]);
 							
+							// Build Indicator List
+							buildIndicatorList(allData, "modal-indicators");
+							$("#modal-indicators").val(ind_num);
+							
 							// Create year buttons
 							var year = $('input[name="lp-radio"]:checked').val();
 							buildYearsButtons(ind_num, 'modal-radio');
@@ -82,7 +86,7 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 							
 							// Draw line and bar charts
 							drawModalLine('modalLine', ind_num, curCountry);
-							drawModalBar('modalBar', ind_num, curCountry, year);
+							drawModalColumn('modalColumn', ind_num, curCountry, year);
 							
 							// Draw Radar Chart
 							var countryList = ["EU Average", "ECIS Average", curCountry]

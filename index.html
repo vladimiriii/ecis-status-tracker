@@ -184,7 +184,7 @@
 	                        <div class="row">
 	                            <div class="col-xs-3"></div>
 	                            <div class="col-xs-6">
-	                                <a href="http://www.eurasia.undp.org/content/rbec/en/home.html" target="_blank"><img src="./static/images/undp-logo.png" alt="" class="partner-img img-responsive"></a>
+	                                <!--<a href="http://www.eurasia.undp.org/content/rbec/en/home.html" target="_blank"><img src="./static/images/undp-logo.png" alt="" class="partner-img img-responsive"></a>-->
 	                            </div>
 	                            <div class="col-xs-4"></div>
 	                        </div>
@@ -205,17 +205,21 @@
 	                    <h2 id="modal-title" style="text-align: center"></h2>
 	                </div>
 	                <div class="modal-body">
-						<div class="row" >
-							<h4 id="modal-indicator" style="text-align: center"></h4>
-						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="row">
-							        <div style="display-inline;">
-							            <div class="no-checkedselector" style="text-align:center;">
-							                <div id="modal-radio" class="toggle-container"></div>
-							            </div>
-							        </div>
+									<div class="col-md-10">
+								        <div style="display-inline;">
+								            <div class="no-checkedselector" style="text-align:center;">
+								                <div id="modal-radio" class="toggle-container"></div>
+								            </div>
+								        </div>
+									</div>
+									<div class="col-md-2">
+										<div id="modal-loop-button" class="toggle-container" style="position:relative; right:20px;">
+											<button type='button' class='btn' id='modal-loop'><span class='glyphicon glyphicon-play' aria-hidden='true' id='modal-play-stop'></span> Autoplay</button>
+										</div>
+									</div>
 								</div>
 								<br>
 								<div class="row">
@@ -223,12 +227,33 @@
 								</div>
 							</div>
 							<div class="col-md-6">
+								<div class="row" >
+									<div class="col-md-7">
+										<h5 id="modal-indicator"></h5>
+									</div>
+									<div class="col-md-5">
+							            <div class="form-group" style="width: 100%; text-align:center;">
+							                <select id="modal-indicators" style="width:100%;" class="form-control eco-select"></select>
+							            </div>
+									</div>
+								</div>
 								<div class="row">
-									<div id="modalBar"></div>
+									<div id="modalLine"></div>
+								</div>
+								<div class="row" id="lineBreak">
 								</div>
 								<br>
 								<div class="row">
-									<div id="modalLine"></div>
+									<div class="col-md-7">
+										<h5>Economic and Other Indicators</h5>
+									</div>
+									<div class="col-md-5">
+							            <div class="form-group" style="width: 100%; text-align:center;">
+							                <select id="ecoIndicators" style="width:100%;" class="form-control eco-select"></select>
+							            </div>
+									</div>
+								<div class="row">
+									<div id="modalColumn"></div>
 								</div>
 							</div>
 						</div>

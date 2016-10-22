@@ -88,6 +88,11 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 							drawModalLine('modalLine', ind_num, curCountry);
 							drawModalColumn('modalColumn', ind_num, curCountry, year);
 							
+							// Get Chart Height and width to ensure they don't resize
+							var detailChart = getChartReferenceByClassName('modalLine');
+							chartHeight = detailChart["chartHeight"];
+							chartWidth = detailChart["chartWidth"];
+							
 							// Draw Radar Chart
 							var countryList = ["EU Average", "ECIS Average", curCountry]
 							var radarData = createRadarData(allData, year, countryList);

@@ -62,7 +62,9 @@ function drawModalColumn(div, tab, country, year){
 			backgroundColor: background, // Background color
             style: {
                 fontFamily: 'UnicaOne',
-            }	
+            },
+			height: chartHeight,
+			width: chartWidth	
 		},
 		title: {
 			text: ""
@@ -182,7 +184,10 @@ function drawModalLine(div, tab, country){
 			backgroundColor: background, // Background color
             style: {
                 fontFamily: "UnicaOne"
-            }
+            },
+			className: 'modalLine',
+			height: chartHeight,
+			width: chartWidth
         },
 		xAxis: {
 			lineColor: lineColor,

@@ -3,6 +3,8 @@ var ind_num = "1_1";
 var year = "2015";
 var activeLoop = false;
 var labels = true;
+var chartHeight = null;
+var chartWidth = null;
 var countryColors = ["#7c87ff", "#e87680", "#421a9b"];
 var bg_color = "#E9E9E9";
 var mapping = {	
@@ -142,6 +144,11 @@ function getCountrySelections(){
 	$("#country-select2 :selected").text(),
 	$("#country-select3 :selected").text()];
 	return selections
+};
+
+function getChartReferenceByClassName(className) {
+    var foundChart = $('.' + className + '').eq(0).parent().highcharts();
+    return foundChart;
 };
 
 // When page is loaded
@@ -295,6 +302,8 @@ $(document).ready(function(){
 		$('#modalRadar').empty();
 		$('#modalColumn').empty();
 		$('#modalLine').empty();
+		chartHeight = null;
+		chartWidth = null;
 		
 		// Refresh Indicator List
 		buildIndicatorList(allData, "indicator-select");

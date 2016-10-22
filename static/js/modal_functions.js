@@ -1,59 +1,33 @@
 // Modal Functionality
-
-// Radar Chart
-
-
-// Bar Chart
-function drawModalColumn(div, tab, country, year){
-	var yAxis = allData['meta']['y_axis'][tab];
-	var categories = [country, "ECIS Average", "EU Average"];
+// Column Chart
+function drawModalColumn(div, indicator, country, year){
+	var ecoData = getEcoData();
+	
+	var yAxis = ecoData['meta']['y_axis'][indicator];
+	var suffix = ecoData['meta']['suffix'][indicator];
+	var title = ecoData['meta']['title'][indicator];
 	var background = bg_color;
 	var rounding = 2;
 	
-	// Get Maximums and Minimums
-	var min = allData['meta']['max_value'][tab];
-	var max = allData['meta']['min_value'][tab];
-	var minEcis = min;
-	var minEu = min;
-	var minCtry = min;
-	var maxEcis = max;
-	var maxEu = max;
-	var maxCtry = max; 
+	// Extract and format data
+	ecoData = ecoData[indicator][year];
+	var sortedKeys = Object.keys(ecoData).sort(function(a,b){return ecoData[b]-ecoData[a]});
 	
-	for (var yr in allData[tab]){
-		var yearData = allData[tab][yr];
-		if (i > 0){
-			// Min
-			if (yearData["ECIS Average"] < minEcis){minEcis = yearData["ECIS Average"]};
-			if (yearData["EU Average"] < minEu){minEu = yearData["EU Average"]};
-			if (yearData[country] < minCtry){minCtry = yearData[country]};
-			
-			//Max
-			if (yearData["ECIS Average"] > maxEcis){maxEcis = yearData["ECIS Average"]};
-			if (yearData["EU Average"] > maxEu){maxEu = yearData["EU Average"]};
-			if (yearData[country] > maxCtry){maxCtry = yearData[country]};
+	var data = [];
+	var categories = [];
+	var colors = [];
+	for (ctry in sortedKeys) {
+		data.push(ecoData[sortedKeys[ctry]]);
+		categories.push(sortedKeys[ctry]);
+		if (sortedKeys[ctry] == country) {
+			colors.push("#e87680");
+		} else {
+			colors.push("#7c87ff");
 		};
-		
 	};
 	
-	// Round results
-	var minEcis = Number(Number(minEcis).toFixed(rounding));
-	var minEu = Number(Number(minEu).toFixed(rounding));
-	var minCtry = Number(Number(minCtry).toFixed(rounding));
-	var maxEcis = Number(Number(maxEcis).toFixed(rounding));
-	var maxEu = Number(Number(maxEu).toFixed(rounding));
-	var maxCtry = Number(Number(maxCtry).toFixed(rounding));
-	
-	// Get data for selected year
-	var curEcis = Number(Number(allData[tab][year]["ECIS Average"]).toFixed(rounding));
-	var curEu = Number(Number(allData[tab][year]["EU Average"]).toFixed(rounding));
-	var curCtry = Number(Number(allData[tab][year][country]).toFixed(rounding));
-	
-	// Build dataset
 	var series = [];
-	series.push({name: year, data: [curCtry, curEcis, curEu], color: countryColors[0]});
-	series.push({name: 'Minimum', data: [minCtry, minEcis, minEu], color: countryColors[1]});
-	series.push({name: 'Maximum', data: [maxCtry, maxEcis, maxEu], color: countryColors[2]});
+	series.push({name: title, data: data});
 
 	// Feed Data to Chart
 	$('#' + div).highcharts({
@@ -73,7 +47,7 @@ function drawModalColumn(div, tab, country, year){
 			categories: categories,
 			labels: {
 				style: {
-					color: lineColor			
+					color: "black"		
 				}
 			}
 		},
@@ -90,28 +64,25 @@ function drawModalColumn(div, tab, country, year){
 				}
 			}
 		},
+		plotOptions: {
+            column: {
+                colorByPoint: true
+            }
+        },
+		colors: colors,
 		legend: {
-			layout: 'horizontal',
-			verticalAlign: 'bottom',
-			itemStyle: {
-				color: lineColor
-			}
+			enabled: false
 		},
 		tooltip: {
 			headerFormat: '<b>{point.x}</b><br/>',
 			shared: true,
-			valueSuffix: '%'
+			valueSuffix: suffix
 		},
-		plotOptions: {
-			bar: {
-	                dataLabels: {
-	                    enabled: true,
-						style: {
-							color: lineColor
-						}
-	                }
-	            }
-		},
+		/*plotOptions: {
+			column: {
+				color: "#e87680"
+			}
+		},*/
 		series: series
 	});
 };

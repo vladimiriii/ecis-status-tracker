@@ -78,6 +78,7 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 							// Build Indicator List
 							buildIndicatorList(allData, "modal-indicators");
 							$("#modal-indicators").val(ind_num);
+							buildIndicatorList(ecoData, "ecoIndicators");
 							
 							// Create year buttons
 							var year = $('input[name="lp-radio"]:checked').val();

@@ -1,23 +1,25 @@
 // Modal Functionality
+
 // Column Chart
 function drawModalColumn(div, indicator, country, year){
-	var ecoData = getEcoData();
 	
 	var yAxis = ecoData['meta']['y_axis'][indicator];
+	var prefix = ecoData['meta']['prefix'][indicator];
 	var suffix = ecoData['meta']['suffix'][indicator];
 	var title = ecoData['meta']['title'][indicator];
+	var rounding = ((ecoData['meta']['rounding'][indicator] == NaN) ? 0 : ecoData['meta']['rounding'][indicator]);
 	var background = bg_color;
-	var rounding = 2;
+	//var rounding = 0;
 	
 	// Extract and format data
-	ecoData = ecoData[indicator][year];
-	var sortedKeys = Object.keys(ecoData).sort(function(a,b){return ecoData[b]-ecoData[a]});
+	var refinedData = ecoData[indicator][year];
+	var sortedKeys = Object.keys(refinedData).sort(function(a,b){return refinedData[b]-refinedData[a]});
 	
 	var data = [];
 	var categories = [];
 	var colors = [];
 	for (ctry in sortedKeys) {
-		data.push(ecoData[sortedKeys[ctry]]);
+		data.push(Number(Number(refinedData[sortedKeys[ctry]]).toFixed(rounding)));
 		categories.push(sortedKeys[ctry]);
 		if (sortedKeys[ctry] == country) {
 			colors.push("#e87680");
@@ -76,6 +78,7 @@ function drawModalColumn(div, indicator, country, year){
 		tooltip: {
 			headerFormat: '<b>{point.x}</b><br/>',
 			shared: true,
+			valuePrefix: prefix,
 			valueSuffix: suffix
 		},
 		/*plotOptions: {

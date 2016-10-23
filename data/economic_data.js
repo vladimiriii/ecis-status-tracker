@@ -1207,14 +1207,14 @@ function getEcoData() {return {
     },
     "meta": {
         "prefix": {
-            "1_1": NaN,
-            "1_2": NaN,
+            "1_1": "US$",
+            "1_2": "US$",
             "1_3": NaN
         },
         "rounding": {
             "1_1": NaN,
             "1_2": NaN,
-            "1_3": NaN
+            "1_3": 2.0
         },
         "source": {
             "1_1": "World Development Indicators",
@@ -1227,8 +1227,8 @@ function getEcoData() {return {
             "1_3": "%"
         },
         "title": {
-            "1_1": "GDP",
-            "1_2": "GDP per Capita",
+            "1_1": "Gross Domestic Product",
+            "1_2": "Gross Domestic Product per Capita",
             "1_3": "Female Labor Force Participation Rate"
         },
         "y_axis": {

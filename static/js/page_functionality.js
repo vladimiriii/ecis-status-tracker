@@ -1,4 +1,5 @@
 var allData = getData();
+var ecoData = getEcoData();
 var ind_num = "1_1";
 var year = "2015";
 var activeLoop = false;
@@ -196,11 +197,11 @@ $(document).ready(function(){
 			$('input[name="md-radio"]').removeClass('checked');
 			$('input[name="md-radio"]:checked').addClass('checked');
 			
-			// Refresh Column Chart
+			// Refresh Modal Column Chart
 			$("#ModalColumn").empty();
 			drawModalColumn('modalColumn', ind_num, curCountry, year);
 			
-			// Refresh Radar Chart
+			// Refresh Modal Radar Chart
 			$("#modalRadar").empty();
 			var countryList = ["EU Average", "ECIS Average", curCountry]
 			var radarData = createRadarData(allData, year, countryList);
@@ -259,7 +260,7 @@ $(document).ready(function(){
 	/*------------------------------------
 	Modal Functions
 	------------------------------------*/
-	// Automated Loop
+	// Modal Automated Loop
 	$(document).on('click', '#modal-loop', function() {
 		if (activeLoop){
 			clicked = true;
@@ -274,20 +275,32 @@ $(document).ready(function(){
 		};
 	});
 	
-	// Refresh Line chart
-	$("#modal-indicators").change(function(){
-		$('#modal-indicator').empty();
+	// Modal Indicator Change
+	$("#modal-indicators").change(function(){			
+
+		// Refresh Year Buttons
 		$('#modal-radio').empty();
-			
-		ind_num = $("#modal-indicators").val();
-		year = $('input[name="modal-radio"]:checked').val();
 		buildYearsButtons(ind_num, 'modal-radio');
 		checkYear(ind_num, year);
+		
+		// Refresh Heading
+		ind_num = $("#modal-indicators").val();
+		$('#modal-indicator').empty();
 		$('#modal-indicator').append(allData['meta']['title'][ind_num]);
 		
 		// Refresh Line Chart
 		$('#modalLine').empty();
 		drawModalLine('modalLine', ind_num, curCountry);
+	});
+	
+	// Economic Indicator Change
+	$("#ecoIndicators").change(function(){
+		ind_num = $("#ecoIndicators").val();
+		year = $('input[name="md-radio"]:checked').val();
+
+		// Refresh Column Chart
+		$('#modalColumn').empty();
+		drawModalColumn('modalColumn', ind_num, curCountry, year);
 	});
 	
 	// Close Modal

@@ -2,6 +2,17 @@
 import pandas as pd
 import json
 
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, numpy.integer):
+            return int(obj)
+        elif isinstance(obj, numpy.floating):
+            return float(obj)
+        elif isinstance(obj, numpy.ndarray):
+            return obj.tolist()
+        else:
+            return super(MyEncoder, self).default(obj)
+
 file_path = "./indicator_data.xlsx"
 tabs = pd.ExcelFile(file_path).sheet_names
 
@@ -15,5 +26,5 @@ for tab in tabs:
 file_path = 'data.js'
 with open(file_path, 'w') as data_file:
     data_file.write("function getData() {return "
-                     + json.dumps(obj = data_dict, indent = 4, sort_keys=True)
+                     + json.dumps(obj = data_dict, indent = 4, sort_keys=True, cls=MyEncoder)
                      + "}")

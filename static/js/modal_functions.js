@@ -4,22 +4,32 @@
 function drawModalColumn(div, country){
 	
 	var yAxis = ecoData['meta']['y_axis'][eco_ind_num];
+	var yAxisMax = ecoData['meta']['y_axis_max'][eco_ind_num];
 	var prefix = ecoData['meta']['prefix'][eco_ind_num];
 	var suffix = ecoData['meta']['suffix'][eco_ind_num];
 	var title = ecoData['meta']['title'][eco_ind_num];
-	var rounding = ((ecoData['meta']['rounding'][eco_ind_num] == NaN) ? 0 : ecoData['meta']['rounding'][eco_ind_num]);
+	var rounding = (isNaN(ecoData['meta']['rounding'][eco_ind_num]) ? 0 : ecoData['meta']['rounding'][eco_ind_num]);
 	var background = bg_color;
 	//var rounding = 0;
 	
 	// Extract and format data
 	var refinedData = ecoData[eco_ind_num][year];
-	var sortedKeys = Object.keys(refinedData).sort(function(a,b){return refinedData[b]-refinedData[a]});
 	
+	// Set NaN to 0
+	for (ctry in refinedData) {
+		if (isNaN(refinedData[ctry])) {
+			refinedData[ctry] = 0;
+		};
+	};
+	
+	// Sort keys by value
+	var sortedKeys = Object.keys(refinedData).sort(function(a,b){return refinedData[b]-refinedData[a]});
 	var data = [];
 	var categories = [];
 	var colors = [];
 	for (ctry in sortedKeys) {
-		data.push(Number(Number(refinedData[sortedKeys[ctry]]).toFixed(rounding)));
+		var dataPoint = ((refinedData[sortedKeys[ctry]] == 0) ? NaN : refinedData[sortedKeys[ctry]]);
+		data.push(Number(Number(dataPoint).toFixed(rounding)));
 		categories.push(sortedKeys[ctry]);
 		if (sortedKeys[ctry] == country) {
 			colors.push("#e87680");
@@ -29,7 +39,9 @@ function drawModalColumn(div, country){
 	};
 	
 	var series = [];
-	series.push({name: title, data: data});
+	series.push({name: title, data: data, animation: {
+            duration: 0
+        }});
 
 	// Feed Data to Chart
 	$('#' + div).highcharts({
@@ -64,7 +76,8 @@ function drawModalColumn(div, country){
 				style: {
 					color: lineColor			
 				}
-			}
+			},
+			max: yAxisMax
 		},
 		plotOptions: {
             column: {

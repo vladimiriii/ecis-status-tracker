@@ -314,6 +314,7 @@ $(document).ready(function(){
 		$('#modalLine').empty();
 		chartHeight = null;
 		chartWidth = null;
+		eco_ind_num = "1_1";
 		
 		// Select Indicator Indicator List
 		$("#indicator-select").val(ind_num);

@@ -1,18 +1,18 @@
 // Modal Functionality
 
 // Column Chart
-function drawModalColumn(div, indicator, country, year){
+function drawModalColumn(div, country){
 	
-	var yAxis = ecoData['meta']['y_axis'][indicator];
-	var prefix = ecoData['meta']['prefix'][indicator];
-	var suffix = ecoData['meta']['suffix'][indicator];
-	var title = ecoData['meta']['title'][indicator];
-	var rounding = ((ecoData['meta']['rounding'][indicator] == NaN) ? 0 : ecoData['meta']['rounding'][indicator]);
+	var yAxis = ecoData['meta']['y_axis'][eco_ind_num];
+	var prefix = ecoData['meta']['prefix'][eco_ind_num];
+	var suffix = ecoData['meta']['suffix'][eco_ind_num];
+	var title = ecoData['meta']['title'][eco_ind_num];
+	var rounding = ((ecoData['meta']['rounding'][eco_ind_num] == NaN) ? 0 : ecoData['meta']['rounding'][eco_ind_num]);
 	var background = bg_color;
 	//var rounding = 0;
 	
 	// Extract and format data
-	var refinedData = ecoData[indicator][year];
+	var refinedData = ecoData[eco_ind_num][year];
 	var sortedKeys = Object.keys(refinedData).sort(function(a,b){return refinedData[b]-refinedData[a]});
 	
 	var data = [];
@@ -91,14 +91,14 @@ function drawModalColumn(div, indicator, country, year){
 };
 
 // Line Chart
-function drawModalLine(div, tab, country){
-	var yAxis = allData['meta']['y_axis'][tab];
+function drawModalLine(div, country){
+	var yAxis = allData['meta']['y_axis'][ind_num];
 	var background = bg_color;
 	var rounding = 2; //allData['meta']['rounding'][tab];
 	
 	// Get Suffixes and Prefixes
-	var prefix = allData['meta']['prefix'][tab];
-	var suffix = allData['meta']['suffix'][tab];
+	var prefix = allData['meta']['prefix'][ind_num];
+	var suffix = allData['meta']['suffix'][ind_num];
 	if (prefix == '_'){
 		prefix = '';
 	}
@@ -112,7 +112,7 @@ function drawModalLine(div, tab, country){
 	var i = 1;
 	var indices = {};
 		
-	for (keyOne in allData[tab]){
+	for (keyOne in allData[ind_num]){
 		var entry = {};
 		var values = [];
 		var colName = 'line_color_';
@@ -120,7 +120,7 @@ function drawModalLine(div, tab, country){
 		var xAxis = [];
 		colName = colName.concat(i);
 	
-		indices[keyOne] = allData[tab][keyOne][country];
+		indices[keyOne] = allData[ind_num][keyOne][country];
 
 		// Ensure keys are sorted correctly
 	    var keys = [];

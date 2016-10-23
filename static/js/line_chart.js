@@ -1,16 +1,16 @@
 // Line Chart specific functions //
 var lineColor = '#000000';
 
-function drawLineChart(div, tab, countries, line_colors){
-	var chartTitle = allData['meta']['title'][tab];
-	var yAxis = allData['meta']['y_axis'][tab];
+function drawLineChart(div, countries){
+	var chartTitle = allData['meta']['title'][ind_num];
+	var yAxis = allData['meta']['y_axis'][ind_num];
 	var background = bg_color;
 	var rounding = 2; //allData['meta']['rounding'][tab];
 	var legend = false;
 	
 	// Get Suffixes and Prefixes
-	var prefix = allData['meta']['prefix'][tab];
-	var suffix = allData['meta']['suffix'][tab];
+	var prefix = allData['meta']['prefix'][ind_num];
+	var suffix = allData['meta']['suffix'][ind_num];
 	if (prefix == '_'){
 		prefix = '';
 	}
@@ -20,13 +20,12 @@ function drawLineChart(div, tab, countries, line_colors){
 	
 	// Get values for charts
 	var data = [];
-	var lineColors = [];
 	var i = 1;
 	
 	for (country in countries){
 		var indices = {};
 		
-		for (keyOne in allData[tab]){
+		for (keyOne in allData[ind_num]){
 			var entry = {};
 			var values = [];
 			var colName = 'line_color_';
@@ -34,7 +33,7 @@ function drawLineChart(div, tab, countries, line_colors){
 			var xAxis = [];
 			colName = colName.concat(i);
 		
-			indices[keyOne] = allData[tab][keyOne][countries[country]];
+			indices[keyOne] = allData[ind_num][keyOne][countries[country]];
 
 			// Ensure keys are sorted correctly
 		    var keys = [];

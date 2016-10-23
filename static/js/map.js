@@ -11,11 +11,11 @@ var colorGradient = [[0, "#FF4A4A"],
 [1, "#26FF60"]];
 
 // Reshape data to be used for the map and 
-function prepareData(indicator, year) {
+function prepareData() {
 	var indicatorData = [];
 	
 	//Get dataset
-	var rawData = allData[indicator][year];
+	var rawData = allData[ind_num][year];
 	
 	for (var key in rawData) {
 		// Remove null values
@@ -37,7 +37,7 @@ function getMetaData() {
 };
 
 //Build map
-function createMap(ind_num, metaData, indicatorData, year, bg_color) {
+function createMap(metaData, indicatorData) {
 	$('#container').highcharts('Map', {
 
 		chart: {
@@ -67,27 +67,25 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 							//Trigger Modal
                             $('#popup-button').click();
 							
-							// Populate Title
+							// Populate Country Name
 							window.curCountry = this.name;
                             $('#modal-title').append(curCountry);
 							
 							// Populate Indicator Name
-							var ind_num = $('#indicator-select').val();
 							$('#modal-indicator').append(allData['meta']['title'][ind_num]);
 							
-							// Build Indicator List
-							buildIndicatorList(allData, "modal-indicators");
+							// Build Indicator Lists
+							buildIndicatorList("modal-indicators", allData);
 							$("#modal-indicators").val(ind_num);
-							buildIndicatorList(ecoData, "ecoIndicators");
+							buildIndicatorList("ecoIndicators", ecoData);
 							
 							// Create year buttons
-							var year = $('input[name="lp-radio"]:checked').val();
-							buildYearsButtons(ind_num, 'modal-radio');
-							checkYear(ind_num, year);
+							buildYearsButtons('modal-radio');
+							checkYear('md-radio');
 							
 							// Draw line and bar charts
-							drawModalLine('modalLine', ind_num, curCountry);
-							drawModalColumn('modalColumn', ind_num, curCountry, year);
+							drawModalLine('modalLine', curCountry);
+							drawModalColumn('modalColumn', curCountry);
 							
 							// Get Chart Height and width to ensure they don't resize
 							var detailChart = getChartReferenceByClassName('modalLine');
@@ -96,9 +94,8 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 							
 							// Draw Radar Chart
 							var countryList = ["EU Average", "ECIS Average", curCountry]
-							var radarData = createRadarData(allData, year, countryList);
+							var radarData = createRadarData(countryList);
 							RadarChart.draw("#modalRadar", radarData, mycfg, countryList);
-							
                         }
                     }
                 }
@@ -152,8 +149,8 @@ function createMap(ind_num, metaData, indicatorData, year, bg_color) {
 };
 
 // Full Map Build Process
-function rebuildMap(series, year) {
-	data = prepareData(ind_num, year);
+function rebuildMap() {
+	data = prepareData();
 	metaData = getMetaData();
-	createMap(ind_num, metaData, data, year);
+	createMap(metaData, data);
 }

@@ -1,6 +1,7 @@
 var allData = getData();
 var ecoData = getEcoData();
 var ind_num = "1_1";
+var eco_ind_num = "1_1";
 var year = "2015";
 var activeLoop = false;
 var labels = true;
@@ -32,25 +33,25 @@ var mapping = {
 };
 
 // Create Year Buttons function
-function buildYearsButtons(indicator, div) {
+function buildYearsButtons(div) {
 	// Create landing page year buttons
 	if (div == 'years-radio'){
 	    $("#" + div).empty();
-	    for (var key in allData[indicator]) {
+	    for (var key in allData[ind_num]) {
 	        var input_radio = "<input type='radio' class='toggle btn-year' name='lp-radio' id='" + key + "' value='"+key+"'><label for='" + key + "' class='btn year-btn'>" + key + "</label>";
 	        $("#" + div).append(input_radio);
 	    };
 	} else {
 	    $("#" + div).empty();
-	    for (var key in allData[indicator]) {
-	        var input_radio = "<input type='radio' class='toggle btn-year modal-btn-year' name='md-radio' id='" + key + "' value='"+key+"'><label for='" + key + "' class='btn btn-sm year-btn'>" + key + "</label>";
+	    for (var key in allData[ind_num]) {
+	        var input_radio = "<input type='radio' class='toggle btn-year modal-btn' name='md-radio' id='" + key + "' value='"+key+"'><label for='" + key + "' class='btn btn-sm year-btn'>" + key + "</label>";
 	        $("#" + div).append(input_radio);
 	    };
 	};
 };
 
-function checkYear(indicator, year) {
-	allKeys = Object.keys(allData[indicator]);
+function checkYear(radioId) {
+	allKeys = Object.keys(allData[ind_num]);
 	
 	if ($.inArray(year, allKeys) == -1) { 
 		// if currently selected year does not exist for new indicator, set year to latest year
@@ -61,13 +62,13 @@ function checkYear(indicator, year) {
 	
 	// Set checks
 	$('#' + yearToCheck).addClass('checked');
-	$('input[id=' + yearToCheck + '][value=' + yearToCheck + ']').prop("checked", true).change();
+	$('input[id=' + yearToCheck + '][name=' + radioId + ']').prop("checked", true).change();
 }
 
 // Build list of indicators
-function buildIndicatorList(data, div) {
+function buildIndicatorList(div, dataset) {
 	$("#" + div).empty();
-	var indicatorData = data["meta"]["title"];
+	var indicatorData = dataset["meta"]["title"];
 	
 	for (key in indicatorData){
         text = "<option value='" + key + "'>" + indicatorData[key] + "</option>";
@@ -79,7 +80,7 @@ function buildIndicatorList(data, div) {
 function timedLoop(i, time) {
 	setTimeout(function(x) {
 		if ($('#myModal').is(':visible')) {
-		    var years = $('.modal-btn-year');
+		    var years = $('.modal-btn');
 			var max_i = years.length;
 		} else {
 		    var years = $('.btn-year');
@@ -156,73 +157,74 @@ function getChartReferenceByClassName(className) {
 $(document).ready(function(){
 	
 	// Create year buttons
-	buildYearsButtons(ind_num, 'years-radio');
+	buildYearsButtons('years-radio');
 	
 	// Get list of indicators
-	buildIndicatorList(allData, "indicator-select");
+	buildIndicatorList('indicator-select', allData);
 	
 	// Populate country dropdowns
 	fillCountryDropdowns();
 	
 	// Create Map
-	checkYear(ind_num, year);
-	rebuildMap(ind_num, year);
+	checkYear('lp-radio');
+	rebuildMap();
 	
 	// Create Radar Chart
 	var countries = getCountrySelections();
-	var radarData = createRadarData(allData, year, countries);
+	var radarData = createRadarData(countries);
 	RadarChart.draw("#radar-chart", radarData, mycfg, countries);
 	
 	// Create Line Chart
-	drawLineChart('line-chart', ind_num, countries);
+	drawLineChart('line-chart', countries);
 	
-	// Update for year changes
-	$(document).on('change', 'input[name="lp-radio"]', function() {
-		year = $('input[name="lp-radio"]:checked').val();
+	// Update for year change
+	$('#years-radio').on('change', 'input[name="lp-radio"]', function() {
+		year = $('input[type="radio"][name="lp-radio"]:checked').val();
 		$('input[name="lp-radio"]').removeClass('checked');
 		$('input[name="lp-radio"]:checked').addClass('checked');
 		
 		// Refresh Radar Chart
 		$("#radar-chart").empty();
 		var countries = getCountrySelections();
-		var radarData = createRadarData(allData, year, countries);
+		var radarData = createRadarData(countries);
 		RadarChart.draw("#radar-chart", radarData, mycfg, countries);
 		
 		// Refresh Map
-		rebuildMap(ind_num, year);
+		rebuildMap(ind_num);
 		
-		// If Modal is Open - update Modal
+		// Modal Year Change
 		if ($('#myModal').is(':visible')) {
-			$('input[name="md-radio"][id=' + year + '][value=' + year + ']').prop("checked", true).change();
-			$('input[name="md-radio"]').removeClass('checked');
-			$('input[name="md-radio"]:checked').addClass('checked');
-			
+			$('input[type="radio"][name="md-radio"]').removeClass('checked');
+			checkYear('md-radio');
+	
 			// Refresh Modal Column Chart
 			$("#ModalColumn").empty();
-			drawModalColumn('modalColumn', ind_num, curCountry, year);
-			
+			drawModalColumn('modalColumn', curCountry);
+	
 			// Refresh Modal Radar Chart
 			$("#modalRadar").empty();
 			var countryList = ["EU Average", "ECIS Average", curCountry]
-			var radarData = createRadarData(allData, year, countryList);
+			var radarData = createRadarData(countryList);
 			RadarChart.draw("#modalRadar", radarData, mycfg, countryList);
 		};
-		
 	});
 	
-	// Update map on indicator change
+	// Update for indicator change
 	$("#indicator-select").change(function(){
 		ind_num = $("#indicator-select").val();
-		year = $('input[name="lp-radio"]:checked').val();
+		
+		// Rebuild Radio Buttons
 		$('#years-radio').empty();
-		buildYearsButtons(ind_num, "years-radio");
-		checkYear(ind_num, year);
-		rebuildMap(ind_num, year);
+		buildYearsButtons("years-radio");
+		checkYear('lp-radio');
+		
+		// Refresh Map
+		rebuildMap();
 		
 		// Refresh Line Chart
 		$("#line-chart").empty();
 		var countries = getCountrySelections();
-		drawLineChart('line-chart', ind_num, countries);
+		drawLineChart('line-chart', countries);
 	});
 	
 	// Update map on label change
@@ -231,7 +233,7 @@ $(document).ready(function(){
 	});
 	
 	// Automated Loop
-	$(document).on('click', '#loop', function() {
+	$('#loop-button').on('click', '#loop', function() {
 		if (activeLoop){
 			clicked = true;
 			breakLoop();
@@ -246,22 +248,22 @@ $(document).ready(function(){
 	});
 	
 	// Refresh Countries
-	$(document).on('click', '#country-refresh', function() {
+	$('.refresh-btn').on('click', '#country-refresh', function() {
 		$("#radar-chart").empty();
 		var countries = getCountrySelections();
-		var radarData = createRadarData(allData, year, countries);
+		var radarData = createRadarData(countries);
 		RadarChart.draw("#radar-chart", radarData, mycfg, countries);
 		
 		// Refresh Line Chart
 		$("#line-chart").empty();
-		drawLineChart('line-chart', ind_num, countries);
+		drawLineChart('line-chart', countries);
 	});
 	
 	/*------------------------------------
 	Modal Functions
 	------------------------------------*/
 	// Modal Automated Loop
-	$(document).on('click', '#modal-loop', function() {
+	$('#modal-loop-button').on('click', '#modal-loop', function() {
 		if (activeLoop){
 			clicked = true;
 			breakLoop();
@@ -277,12 +279,6 @@ $(document).ready(function(){
 	
 	// Modal Indicator Change
 	$("#modal-indicators").change(function(){			
-
-		// Refresh Year Buttons
-		$('#modal-radio').empty();
-		buildYearsButtons(ind_num, 'modal-radio');
-		checkYear(ind_num, year);
-		
 		// Refresh Heading
 		ind_num = $("#modal-indicators").val();
 		$('#modal-indicator').empty();
@@ -290,23 +286,24 @@ $(document).ready(function(){
 		
 		// Refresh Line Chart
 		$('#modalLine').empty();
-		drawModalLine('modalLine', ind_num, curCountry);
+		drawModalLine('modalLine', curCountry);
 	});
 	
 	// Economic Indicator Change
 	$("#ecoIndicators").change(function(){
-		ind_num = $("#ecoIndicators").val();
-		year = $('input[name="md-radio"]:checked').val();
+		eco_ind_num = $("#ecoIndicators").val();
 
 		// Refresh Column Chart
 		$('#modalColumn').empty();
-		drawModalColumn('modalColumn', ind_num, curCountry, year);
+		drawModalColumn('modalColumn', curCountry);
 	});
 	
 	// Close Modal
-	$(document).on('click', '#close', function(){
-		rebuildMap(ind_num, year);
-		var ind_num = $('#modal-indicators').val();
+	$('.modal-header').on('click', '#close', function(){
+		rebuildMap();
+		
+		// Check Year
+		checkYear('lp-radio');
 		
 		// Clear Old Data
         $('#modal-title').empty();
@@ -318,17 +315,16 @@ $(document).ready(function(){
 		chartHeight = null;
 		chartWidth = null;
 		
-		// Refresh Indicator List
-		buildIndicatorList(allData, "indicator-select");
+		// Select Indicator Indicator List
 		$("#indicator-select").val(ind_num);
 		
 		// Refresh Map
-		rebuildMap(ind_num, year);
+		rebuildMap();
 		
 		// Refresh Radar Chart
 		$("#radar-chart").empty();
 		var countries = getCountrySelections();
-		var radarData = createRadarData(allData, year, countries);
+		var radarData = createRadarData(countries);
 		RadarChart.draw("#radar-chart", radarData, mycfg, countries);
 	});
 	

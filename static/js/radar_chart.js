@@ -12,25 +12,25 @@ var mycfg = {
 }
 
 // Generate Data
-function createRadarData(data, year, countryList) {
+function createRadarData(countryList) {
 	var cleanData = [];
 	for (i in countryList) {
 		var countryData = [];
-		for (key in data) {
+		for (key in allData) {
 			if (!(key=="meta")) {
-				if (year in data[key]) {
+				if (year in allData[key]) {
 					// Standardize Values
-					var rawValue = data[key][year][countryList[i]];
+					var rawValue = allData[key][year][countryList[i]];
 					if (!isNaN(rawValue)){
-						var minValue = data["meta"]["min_value"][key];
-						var maxValue = data["meta"]["max_value"][key];
+						var minValue = allData["meta"]["min_value"][key];
+						var maxValue = allData["meta"]["max_value"][key];
 						var stdValue = (rawValue - minValue)/(maxValue - minValue);
 						
 					} else {
 						var stdValue = 0;
 					};
 					
-					var record = {axis:data["meta"]["title"][key], value:stdValue};
+					var record = {axis:allData["meta"]["title"][key], value:stdValue};
 					countryData.push(record);
 				};
 			};

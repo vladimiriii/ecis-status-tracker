@@ -1,4 +1,14 @@
 // Modal Functionality
+// Set Chart Width and Chart Height
+var chartHeight = null;
+var chartWidth = null;
+if(screenWidth <= 992){
+	chartWidth = 0.95 * screenWidth;
+	chartHeight = 0.5 * chartWidth;
+} else {
+	chartWidth = 0.45 * screenWidth;
+	chartHeight = 0.5 * chartWidth;
+};
 
 // Column Chart
 function drawModalColumn(div, country){

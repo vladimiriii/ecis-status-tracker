@@ -1,3 +1,4 @@
+var screenWidth = screen.width;
 var allData = getData();
 var ecoData = getEcoData();
 var ind_num = "1_1";
@@ -5,8 +6,6 @@ var eco_ind_num = "1_1";
 var year = "2015";
 var activeLoop = false;
 var labels = true;
-var chartHeight = null;
-var chartWidth = null;
 var countryColors = ["#7c87ff", "#e87680", "#421a9b"];
 var bg_color = "#E9E9E9";
 var mapping = {	
@@ -328,5 +327,8 @@ $(document).ready(function(){
 		var radarData = createRadarData(countries);
 		RadarChart.draw("#radar-chart", radarData, mycfg, countries);
 	});
+	
+	// Refresh Charts on Window Resize
+	$(window).resize(function(){location.reload();});
 	
 });

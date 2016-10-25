@@ -1,15 +1,28 @@
 //Practically all this code comes from https://github.com/alangrafu/radar-chart-d3
 
+// Calculate radar chart size
+if(screenWidth <= 992){
+	var radarSize = 0.5 * screenWidth;
+	var factor = 1.05;
+	var extraWidth = 200;
+} else {
+	var radarSize = 0.27 * screenWidth;
+	var factor = 1;
+	var extraWidth = 200;
+};
+
+console.log(radarSize);
+
 // Configuration Options
-var w = 400;
-var h = 400;
+var w = radarSize;
+var h = radarSize;
 
 //Options for the Radar chart, other than default
 var mycfg = {
-  w: w,
-  h: h,
-  ExtraWidthX: 300
-}
+  	w: w,
+  	h: h,
+	ExtraWidthX: extraWidth
+};
 
 // Generate Data
 function createRadarData(countryList) {
@@ -46,7 +59,7 @@ var RadarChart = {
 			radius: 4, //The size of the colored circles at each point
 			w: 400, //Width of the circle
 			h: 400, //Height of the circle
-			factor: 1.00,
+			factor: factor,
 			factorLegend: .85,
 			levels: 4, //How many levels or inner circles should there be drawn
 			maxValue: 0.8, //What is the value that the biggest circle will represent

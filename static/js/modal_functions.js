@@ -59,7 +59,7 @@ function drawModalColumn(div, country){
 			type: 'column',
 			backgroundColor: background, // Background color
             style: {
-                fontFamily: 'UnicaOne',
+                fontFamily: 'CustomFont',
             },
 			height: chartHeight,
 			width: chartWidth	
@@ -180,7 +180,7 @@ function drawModalLine(div, country){
         chart: {
 			backgroundColor: background, // Background color
             style: {
-                fontFamily: "UnicaOne"
+                fontFamily: "CustomFont"
             },
 			className: 'modalLine',
 			height: chartHeight,

@@ -125,7 +125,7 @@ var RadarChart = {
 			.attr("x", function(d){return levelFactor*(1-cfg.factor*Math.sin(0));})
 			.attr("y", function(d){return levelFactor*(1-cfg.factor*Math.cos(0));})
 			.attr("class", "legend")
-			.style("font-family", "UnicaOne")
+			.style("font-family", "CustomFont")
 			.style("font-size", "12px")
 			.attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
 			.attr("fill", "black")
@@ -156,7 +156,7 @@ var RadarChart = {
 	axis.append("text")
 		.attr("class", "legend")
 		.text(function(d){return d})
-		.style("font-family", "UnicaOne")
+		.style("font-family", "CustomFont")
 		.style("font-size", "11px")
 		.style("color", "black")
 		.attr("text-anchor", "middle")
@@ -280,7 +280,7 @@ var RadarChart = {
 	//Tooltip
 	tooltip = g.append('text')
 		.style('opacity', 0.5)
-		.style('font-family', 'UnicaOne')
+		.style('font-family', 'CustomFont')
 		.style("font-size", "20px")
 		.style("color", "black")
 		.style("text-anchor", "middle");

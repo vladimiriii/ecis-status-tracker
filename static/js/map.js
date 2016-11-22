@@ -45,7 +45,7 @@ function createMap(metaData, indicatorData) {
 			margin: 5,
 			height: 400,
 			style: {
-				fontFamily: "UnicaOne"
+				fontFamily: "CustomFont"
 			}
 		},
 		title: {

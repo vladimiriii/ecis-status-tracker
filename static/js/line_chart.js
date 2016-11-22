@@ -77,7 +77,7 @@ function drawLineChart(div, countries){
         chart: {
 			backgroundColor: background, // Background color
             style: {
-                fontFamily: "UnicaOne"
+                fontFamily: "CustomFont"
             }
         },
 		xAxis: {

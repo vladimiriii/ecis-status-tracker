@@ -1,13 +1,13 @@
 @font-face{
-  font-family:"UnicaOne";
-  src:url("UnicaOne-Regular.ttf");
+  font-family:"CustomFont";
+  src:url("Monda-Regular.ttf");
 }
 
 body {
-  font-family: UnicaOne, sans-serif;
+  font-family: CustomFont, sans-serif;
   padding-right: 0;
   background-color: #E9E9E9;
-  font-size:  15px;
+  font-size:  13px;
 }
 
 .navbar-brand {
@@ -24,7 +24,7 @@ body {
 /* Radar Chart */
 svg {
   font-size: 13px;
-  font-family: UnicaOne, sans-serif;
+  font-family: CustomFont, sans-serif;
 }
 
 /* Year Buttons */
@@ -37,6 +37,7 @@ input[type="radio"].toggle {
 	border: 1px solid #E9E9E9;
 	background-color: #bababa;
 	color: #313131;
+	font-size: 13px;
 }
 
 .year-btn:hover {
@@ -48,6 +49,10 @@ input[type="radio"]:checked + .year-btn {
     background-color: #47476B;
     color: #FFFFFF;
 }
+/* Indicator Select */
+#indicator-select {
+	font-size: 13px;
+}
 
 /* Show/Hide Label Checkbox */
 #label-text {
@@ -55,6 +60,10 @@ input[type="radio"]:checked + .year-btn {
 }
 
 /* Country Selectors */
+.country-select {
+	font-size: 13px;
+}
+
 .country-label {
 	color: #000000;
 	text-align: center;

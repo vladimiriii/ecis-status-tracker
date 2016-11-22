@@ -59,6 +59,11 @@ input[type="radio"]:checked + .year-btn {
 	color: #000000;
 }
 
+/* Loop button */
+#loop {
+	font-size: 13px;
+}
+
 /* Country Selectors */
 .country-select {
 	font-size: 13px;
@@ -82,11 +87,18 @@ input[type="radio"]:checked + .year-btn {
 .modal-content {
 	background-color: #E9E9E9;
 	color: black;
+	font-size: 13px;
 }
 
 #lineBreak {
 	height: 10px;
 	border-bottom: 1px solid black;
+}
+
+#modal-loop {
+	font-size:13px;
+    position: absolute;
+    left: -1em;
 }
 
 #modalColumn {
@@ -97,6 +109,13 @@ input[type="radio"]:checked + .year-btn {
 	height:40%;
 }
 
+#modal-indicators {
+	font-size:13px;
+}
+
+#ecoIndicators {
+	font-size:13px;
+}
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     /* Styles */

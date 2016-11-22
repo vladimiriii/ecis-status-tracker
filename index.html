@@ -52,28 +52,37 @@
 	</script>
 </head>
 <body>
-	<!-- Navbar -->
-	<div class="row">
-	    <nav class="navbar navbar-inverse">
-	        <div class="navbar-header">
-	            <a class="navbar-brand" href="">ECIS Development Visualizer</a>
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	                <span class="sr-only">Toggle navigation</span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	            </button>
-	        </div>
-	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	            <ul class="nav navbar-nav navbar-right">
-	            	<li><a id="download-data" href="">Download Data</a></li>
-	            </ul>
-	        </div>
-	    </nav>
-	</div>
-	
 	<!-- Content -->
 	<div class="container-fluid">
+		<!-- Navbar -->
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="">ECIS Development Visualizer</a>
+					<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</button>-->
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="data-sources" href="#dataSourceModal" data-toggle="modal">Data Sources</a></li>
+						<li><a id="download-data" href="">Download Data</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- Map -->
+		<div class="row">
+			<div class="col-md-1"><br></div>
+			<div class="col-md-10">
+				<h3>What is this?</h3>
+				<p>This visualization is designed to allow you to explore the level of development in the countries and territories of the Europe and Commonwealth of Independent States (ECIS) region. There are eight dimensions available that capture the status of governance, human rights, rule of law, gender equality and peace over the past 20 years.</p>
+			</div>
+			<div class="col-md-1"><br></div>
+		</div>
 		<!-- Map -->
 		<div class="row">
 			<div class="col-md-1"><br></div>
@@ -158,50 +167,47 @@
 			</div>
 		</div>
 		<br>
-	</div>
-	
-	<!-- Footer -->
-	<div class="row">
-	    <footer class="" style="text-align: center; margin-top:10px; background-color:#363636; color: #FFF;">
-	        <div class="" style="width:100%">
-	            <div class="container">
-	                <div class="row">
-	                    <div class="footer-col col-md-5">
-	                    	<h4>About this Visualization</h4>
-	                        <p>UNDP works throughout the ECIS region to improve governance and reduce conflict. This visualization is designed to allow for the high level tracking of various indicators, showing both where progress is being made, and where further efforts are required.</p>
-	                    </div>
-	                    <div class="footer-col col-md-3">
-	                        <br>
-	                        <h4>Follow us</h4>
-	                        <!-- Twitter -->
-	                        <a href="https://twitter.com/UNDPEurasia" data-toggle="tooltip" title="Twitter" target="_blank" class="share-btn twitter">
-	                            <i class="fa fa-twitter"></i>
-	                        </a>
+		
+		<!-- Footer -->
+		<div class="row">
+		    <footer class="" style="text-align: center; margin-top:10px; background-color:#363636; color: #FFF;">
+		        <div class="" style="width:100%">
+		            <div class="container">
+		                <div class="row">
+		                    <div class="footer-col col-md-5">
+		                    	<h4>What We Do</h4>
+		                        <p>UNDP works throughout the ECIS region to improve governance and reduce conflict. This visualization is designed to allow for the high level tracking of various indicators, showing both where progress is being made, and where further efforts are required.</p>
+		                    </div>
+		                    <div class="footer-col col-md-3">
+		                        <br>
+		                        <h4>Follow us</h4>
+		                        <!-- Twitter -->
+		                        <a href="https://twitter.com/UNDPEurasia" data-toggle="tooltip" title="Twitter" target="_blank" class="share-btn twitter">
+		                            <i class="fa fa-twitter"></i>
+		                        </a>
 
-	                        <!-- Facebook -->
-	                        <a href="https://web.facebook.com/UNDPinEuropeandCIS/?_rdr" data-toggle="tooltip" title="Facebook" target="_blank" class="share-btn facebook">
-	                            <i class="fa fa-facebook"></i>
-	                        </a>
+		                        <!-- Facebook -->
+		                        <a href="https://web.facebook.com/UNDPinEuropeandCIS/?_rdr" data-toggle="tooltip" title="Facebook" target="_blank" class="share-btn facebook">
+		                            <i class="fa fa-facebook"></i>
+		                        </a>
 
-	                        <!-- Page -->
-	                        <a href="http://www.eurasia.undp.org/content/rbec/en/home.html" data-toggle="tooltip" title="UNDP Kosovo" target="_blank" class="share-btn home">
-	                            <i class="fa fa-home"></i>
-	                        </a>
-	                        <br><br>
-	                    </div>
-	                    <div class="footer-col col-md-4">
-	                        <div class="row">
-	                            <div class="col-xs-3"></div>
-	                            <div class="col-xs-6">
-	                                <!--<a href="http://www.eurasia.undp.org/content/rbec/en/home.html" target="_blank"><img src="./static/images/undp-logo.png" alt="" class="partner-img img-responsive"></a>-->
-	                            </div>
-	                            <div class="col-xs-4"></div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </footer>
+		                        <!-- Page -->
+		                        <a href="http://www.eurasia.undp.org/content/rbec/en/home.html" data-toggle="tooltip" title="UNDP Kosovo" target="_blank" class="share-btn home">
+		                            <i class="fa fa-home"></i>
+		                        </a>
+		                        <br><br>
+		                    </div>
+		                    <div class="footer-col col-md-4">
+		                        <div class="row">
+									<p style="padding-top:3em">References to Kosovo in this visualization shall be understood to be in the context of Security Council Resolution 1244 (1999).</p>
+		                                <!--<a href="http://www.eurasia.undp.org/content/rbec/en/home.html" target="_blank"><img src="./static/images/undp-logo.png" alt="" class="partner-img img-responsive"></a>-->
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </footer>
+		</div>
 	</div>
 	<!-- Modal -->
 	<div class="row">
@@ -271,6 +277,32 @@
 	                <div class="modal-footer" style="text-align:center;">
 	                    <h4>ECIS Development Visualizer</h4>
 	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- Data Sources Modal -->
+	<div class="row">
+	    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="dataSourceModal" role="dialog">
+	        <div class="modal-dialog" style="width:50%;">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="navbar-collapse modal-header">
+	                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
+	                    <h2 style="text-align: center">Data Sources</h2>
+	                </div>
+	                <div class="modal-body">
+						<p>The data used in this visualization has been sourced from the following locations:</p>
+						<ul>
+							<li>Political Stability and Absence of Violence/Terrorism - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Voice and Accountability- <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Government Effecitveness - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Regulatory Quality - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Rule of Law - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Control of Corruption - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Women in National Parliament - <a href="http://data.worldbank.org/indicator/SG.GEN.PARL.ZS" target="_blank">The World Bank, World Development Indicators</a></li>
+							<li>Human Development Index - <a href="http://hdr.undp.org/en/content/human-development-index-hdi" target="_blank">UNDP</a></li>
+					</div>
 	            </div>
 	        </div>
 	    </div>

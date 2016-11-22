@@ -329,6 +329,6 @@ $(document).ready(function(){
 	});
 	
 	// Refresh Charts on Window Resize
-	$(window).resize(function(){location.reload();});
+	//$(window).resize(function(){location.reload();});
 	
 });

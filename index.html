@@ -132,6 +132,7 @@
 			<!-- Radar Chart: http://bl.ocks.org/nbremer/6506614 -->
 			<div class="col-md-5" style="text-align:center">
 			   	<div id="radar-chart" style="text-align:center"></div>
+				<span class="footnote"><p><sup>*</sup> Values in the radar chart are shown as a percentage of the theoretical maximum score.</p></span>
 			</div>
 			<!-- Country Selectors / Refresh Button -->
 			<div class="col-md-2">
@@ -239,6 +240,7 @@
 								<br>
 								<div class="row" style="text-align:center;">
 									<div id="modalRadar" style="text-align:center;"></div>
+									<span class="footnote"><p><sup>*</sup> Values in the radar chart are shown as a percentage of the theoretical maximum score.</p></span>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -294,15 +296,22 @@
 	                <div class="modal-body">
 						<p>The data used in this visualization has been sourced from the following locations:</p>
 						<ul>
-							<li>Political Stability and Absence of Violence/Terrorism - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
-							<li>Voice and Accountability- <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
-							<li>Government Effecitveness - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
-							<li>Regulatory Quality - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
-							<li>Rule of Law - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
-							<li>Control of Corruption - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Political Stability and Absence of Violence/Terrorism<sup>1</sup> - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Voice and Accountability<sup>1</sup> - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Government Effecitveness<sup>1</sup> - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Regulatory Quality<sup>1</sup> - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Rule of Law<sup>1</sup> - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
+							<li>Control of Corruption<sup>1</sup> - <a href="http://info.worldbank.org/governance/wgi/index.aspx#home" target="_blank">The World Bank, Worldwide Governance Indicators</a></li>
 							<li>Women in National Parliament - <a href="http://data.worldbank.org/indicator/SG.GEN.PARL.ZS" target="_blank">The World Bank, World Development Indicators</a></li>
-							<li>Human Development Index - <a href="http://hdr.undp.org/en/content/human-development-index-hdi" target="_blank">UNDP</a></li>
+							<li>Human Development Index<sup>2, 3</sup> - <a href="http://hdr.undp.org/en/content/human-development-index-hdi" target="_blank">UNDP</a></li>
 						</ul>
+						<br>
+						<br>
+						<span class="footnote">
+							<p><sup>1</sup> Data for 1997, 1999 and 2001 was interpolated as an average of the years immediately before and after.</p>
+							<p><sup>2</sup> Data from 1995, 2000, 2005 and 2010, where available, was used to interpolate all intervening years.</p>
+							<p><sup>3</sup> Data for 2015 was extrapolated from the average growth rate between 2010 and 2014.</p>
+						</span>
 					</div>
 	            </div>
 	        </div>

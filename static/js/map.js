@@ -10,6 +10,19 @@ var colorGradient = [[0, "#FF4A4A"],
 [0.9, "#50FF65"],
 [1, "#26FF60"]];
 
+/*var colorGradient = [[0, "#FFBF0F"],
+[0.1, "#FFCB3F"], 
+[0.2, "#FFD86F"], 
+[0.3, "#FFE59F"], 
+[0.4, "#FFF2CF"], 
+[0.5, "#FFFFFF"], 
+[0.6, "#DCE0FE"], 
+[0.7, "#B9C1FD"], 
+[0.8, "#96A2FD"], 
+[0.9, "#7383FC"], 
+[1, "#5165FC"]];*/
+
+
 // Reshape data to be used for the map and 
 function prepareData() {
 	var indicatorData = [];

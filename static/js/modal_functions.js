@@ -15,6 +15,7 @@ function drawModalColumn(div, country){
 	
 	var yAxis = ecoData['meta']['y_axis'][eco_ind_num];
 	var yAxisMax = ecoData['meta']['y_axis_max'][eco_ind_num];
+	var yAxisMin = ecoData['meta']['y_axis_min'][eco_ind_num];
 	var prefix = ecoData['meta']['prefix'][eco_ind_num];
 	var suffix = ecoData['meta']['suffix'][eco_ind_num];
 	var title = ecoData['meta']['title'][eco_ind_num];
@@ -87,7 +88,8 @@ function drawModalColumn(div, country){
 					color: lineColor			
 				}
 			},
-			max: yAxisMax
+			max: yAxisMax,
+			min: yAxisMin
 		},
 		plotOptions: {
             column: {
@@ -222,6 +224,6 @@ function drawModalLine(div, country){
 		legend: {
 			enabled: false
 		},
-		series: data
+		series: data,
 	});
 }

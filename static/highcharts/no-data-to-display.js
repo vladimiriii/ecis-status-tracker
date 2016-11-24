@@ -8,7 +8,7 @@
  License: www.highcharts.com/license
 */
 (function(d){"object"===typeof module&&module.exports?module.exports=d:d(Highcharts)})(function(d){(function(c){function d(){return!!this.points.length}function g(){this.hasData()?this.hideNoData():this.showNoData()}var h=c.seriesTypes,e=c.Chart.prototype,f=c.getOptions(),k=c.extend,l=c.each;
-k(f.lang,{noData:"No data available.<br/>Try a different year."});
+k(f.lang,{noData:"No data available.<br/>Try a different indicator or year."});
 f.noData={position:{x:0,y:0,align:"center",verticalAlign:"middle"}};
 f.noData.style={fontWeight:"bold",fontSize:"15px",color:"#666666"};
 l(["pie","gauge","waterfall","bubble","treemap"],function(a){h[a]&&(h[a].prototype.hasData=d)});

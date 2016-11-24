@@ -6930,7 +6930,7 @@ function getEcoData() {return {
             "1_17": "Unemployment Rate (Total)"
         },
         "y_axis": {
-            "1_01": "Current $US",
+            "1_01": "Current $US (millions)",
             "1_02": "Current $US",
             "1_03": "Percentage of total land",
             "1_04": "Hectares per person",

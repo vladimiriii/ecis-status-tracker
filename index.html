@@ -224,26 +224,34 @@
 	                <div class="modal-body">
 						<div class="row">
 							<div class="col-md-6">
+								<br>
+								<div class="row" style="text-align:center;">
+									<div id="modalRadar" style="text-align:center"></div>
+									<span class="footnote"><p><sup>*</sup> Values in the radar chart are shown as a percentage of the theoretical maximum score.</p></span>
+								</div>
+								<br>
 								<div class="row">
-									<div class="col-md-10">
+									<div class="col-md-12">
 								        <div style="display-inline;">
 								            <div class="no-checkedselector" style="text-align:center;">
 								                <div id="modal-radio" class="toggle-container"></div>
 								            </div>
 								        </div>
 									</div>
-									<div class="col-md-2">
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-12">
 										<div id="modal-loop-button" class="toggle-container" style="text-align:center;">
 											<button type='button' class='btn' id='modal-loop'><span class='glyphicon glyphicon-play' aria-hidden='true' id='modal-play-stop'></span> Autoplay</button>
 										</div>
 									</div>
-								</div>
-								<br>
-								<div class="row" style="text-align:center;">
-									<div id="modalRadar" style="text-align:center;"></div>
-									<span class="footnote"><p><sup>*</sup> Values in the radar chart are shown as a percentage of the theoretical maximum score.</p></span>
+									<div class="col-md-10">
+										
+									</div>
 								</div>
 							</div>
+							
 							<div class="col-md-6">
 								<div class="row" >
 									<div class="col-md-7">
@@ -258,21 +266,38 @@
 								<div class="row">
 									<div id="modalLine"></div>
 								</div>
-								<div class="row" id="lineBreak">
+									<div class="row" id="lineBreak">
 								</div>
 								<br>
 								<div class="row">
 									<div class="col-md-7">
-										<h5>Economic and Other Indicators</h5>
+										<h5 id="modal-eco-indicator"></h5>
 									</div>
 									<div class="col-md-5">
-							            <div class="form-group" style="text-align:center;">
+							            <div id="eco-select" class="form-group" style="text-align:center;">
 							                <select id="ecoIndicators" style="width:100%;" class="form-control eco-select"></select>
 							            </div>
 									</div>
 								</div>
 								<div class="row">
-									<div id="modalColumn"></div>
+									<ul class="nav nav-tabs nav-justified">
+										<li class="active" ><a class="eco-tabs" data-toggle="tab" href="#ranking-tab">Country Ranking</a></li>
+									  	<li><a class="eco-tabs" data-toggle="tab" href="#timeseries-tab">Time Series</a></li>
+									</ul>
+								</div>
+								<div class="tab-content">
+								    <div class="tab-pane active" id="ranking-tab">
+										<br>
+										<div class="row">
+											<div id="modalColumn" style="height: 350px"></div>
+										</div>
+									</div>
+									<div class="tab-pane" id="timeseries-tab">
+										<br>
+										<div class="row">
+											<div id="modalEcoLine" style="height: 350px"></div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -287,7 +312,7 @@
 	<!-- Data Sources Modal -->
 	<div class="row">
 	    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="dataSourceModal" role="dialog">
-	        <div class="modal-dialog" style="width:50%;">
+	        <div class="modal-dialog" style="width:60%;">
 	            <!-- Modal content-->
 	            <div class="modal-content">
 	                <div class="navbar-collapse modal-header">
@@ -322,14 +347,14 @@
 	<!-- Data Download Modal -->
 	<div class="row">
 	    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="dataDownloadModal" role="dialog">
-	        <div class="modal-dialog" style="width:50%;">
+	        <div class="modal-dialog" style="width:40%;">
 	            <!-- Modal content-->
 	            <div class="modal-content">
 	                <div class="navbar-collapse modal-header">
 	                    <button type="button" class="btn btn-default" id="close" style="float:right" data-dismiss="modal">Close</button>
 	                    <h2 style="text-align: center">Download</h2>
 	                </div>
-	                <div class="modal-body">
+	                <div class="modal-body" style="text-align:center">
 						<h4>Governance and Peacebuilding Indicators</h4>
 						<div class="row">
 							<div class="col-md-6">

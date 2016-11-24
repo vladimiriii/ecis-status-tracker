@@ -154,7 +154,7 @@ function getChartReferenceByClassName(className) {
 
 // When page is loaded
 $(document).ready(function(){
-	
+
 	// Create year buttons
 	buildYearsButtons('years-radio');
 	
@@ -199,6 +199,10 @@ $(document).ready(function(){
 			// Refresh Modal Column Chart
 			$("#ModalColumn").empty();
 			drawModalColumn('modalColumn', curCountry);
+			
+			// Refresh Eco Indicator
+			$('#modal-eco-indicator').empty();
+			$('#modal-eco-indicator').append(ecoData['meta']['title'][eco_ind_num]);
 	
 			// Refresh Modal Radar Chart
 			$("#modalRadar").empty();
@@ -257,7 +261,7 @@ $(document).ready(function(){
 		$("#line-chart").empty();
 		drawLineChart('line-chart', countries);
 	});
-	
+
 	/*------------------------------------
 	Modal Functions
 	------------------------------------*/
@@ -291,10 +295,17 @@ $(document).ready(function(){
 	// Economic Indicator Change
 	$("#ecoIndicators").change(function(){
 		eco_ind_num = $("#ecoIndicators").val();
+		$('#modal-eco-indicator').empty();
+		$('#modal-eco-indicator').append(ecoData['meta']['title'][eco_ind_num]);
 
 		// Refresh Column Chart
 		$('#modalColumn').empty();
 		drawModalColumn('modalColumn', curCountry);
+		
+		// Refresh Eco Line Chart
+		$('#modalEcoLine').empty();
+		drawModalEcoLine('modalEcoLine', curCountry);
+		
 	});
 	
 	// Close Modal
@@ -307,13 +318,12 @@ $(document).ready(function(){
 		// Clear Old Data
         $('#modal-title').empty();
 		$('#modal-indicator').empty();
+		$('#modal-eco-indicator').empty();
 		$('#modal-radio').empty();
 		$('#modalRadar').empty();
 		$('#modalColumn').empty();
 		$('#modalLine').empty();
-		chartHeight = null;
-		chartWidth = null;
-		eco_ind_num = "1_1";
+		eco_ind_num = "1_01";
 		
 		// Select Indicator Indicator List
 		$("#indicator-select").val(ind_num);

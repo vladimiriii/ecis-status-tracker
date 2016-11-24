@@ -11,8 +11,6 @@ if(screenWidth <= 992){
 	var extraWidth = 200;
 };
 
-console.log(radarSize);
-
 // Configuration Options
 var w = radarSize;
 var h = radarSize;

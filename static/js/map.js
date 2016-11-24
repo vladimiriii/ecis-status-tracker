@@ -52,7 +52,6 @@ function getMetaData() {
 //Build map
 function createMap(metaData, indicatorData) {
 	$('#container').highcharts('Map', {
-
 		chart: {
 			backgroundColor: bg_color,
 			margin: 5,
@@ -86,6 +85,7 @@ function createMap(metaData, indicatorData) {
 							
 							// Populate Indicator Name
 							$('#modal-indicator').append(allData['meta']['title'][ind_num]);
+							$('#modal-eco-indicator').append(ecoData['meta']['title'][eco_ind_num]);
 							
 							// Build Indicator Lists
 							buildIndicatorList("modal-indicators", allData);
@@ -95,10 +95,11 @@ function createMap(metaData, indicatorData) {
 							// Create year buttons
 							buildYearsButtons('modal-radio');
 							checkYear('md-radio');
-							
+					
 							// Draw line and bar charts
 							drawModalLine('modalLine', curCountry);
 							drawModalColumn('modalColumn', curCountry);
+							drawModalEcoLine('modalEcoLine', curCountry);
 							
 							// Get Chart Height and width to ensure they don't resize
 							var detailChart = getChartReferenceByClassName('modalLine');

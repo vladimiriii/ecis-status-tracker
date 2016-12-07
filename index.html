@@ -60,18 +60,13 @@
 			<nav class="navbar navbar-inverse">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="">ECIS Development Visualizer</a>
-					<!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						</button>-->
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+						<li><a href="http://brettromero.com/wordpress/visualizations/" target="_blank">More Visualizations</a></li>
 						<li><a id="data-sources" href="#dataSourceModal" data-toggle="modal">Data Sources</a></li>
 						<li><a id="download-data" href="#dataDownloadModal" data-toggle="modal">Download</a></li>
-					</ul>
+					</ul> <!-- navbar-collapse -->
 				</div>
 			</nav>
 		</div>
@@ -80,8 +75,9 @@
 			<div class="col-md-1"><br></div>
 			<div class="col-md-10">
 				<h3>What is this?</h3>
-				<p>This visualization is designed to allow you to explore the level of development in the countries and territories of the Europe and Commonwealth of Independent States (ECIS) region. There are eight dimensions available that capture the status of governance, human rights, rule of law, gender equality and peace over the past 20 years.</p>
+				<p>This visualization is designed to allow you to explore the level of development in the countries and territories of the Europe and Commonwealth of Independent States (ECIS) region. There are eight dimensions available that capture the status of governance, human rights, rule of law, gender equality and peace over the past 20 years. By clicking on a country on the map, you can also see additional data for that country.</p>
 			</div>
+			<br>
 			<div class="col-md-1"><br></div>
 		</div>
 		<!-- Map -->
@@ -138,21 +134,21 @@
 			<!-- Country Selectors / Refresh Button -->
 			<div class="col-md-2">
 				<br>
-				<div class="country-label">Country/Territory 1
+				<div class="country-label">Country 1
 					<div class="color-box" style="background-color: #7c87ff"></div>
 				</div>
 	            <div class="form-group" style="width: 100%; text-align:center;">
 	                <select id="country-select1" style="width:100%;" class="form-control country-select"></select>
 	            </div>
 				<br>
-				<div class="country-label">Country/Territory 2
+				<div class="country-label">Country 2
 					<div class="color-box" style="background-color: #e87680"></div>
 				</div>
 	            <div class="form-group">
 	                <select id="country-select2" class="form-control country-select"></select>
 	            </div>
 				<br>
-				<div class="country-label">Country/Territory 3
+				<div class="country-label">Country 3
 					<div class="color-box" style="background-color: #421a9b"></div>
 				</div>
 	            <div class="form-group" style="width: 100%; text-align:center;">
@@ -176,34 +172,28 @@
 		        <div class="" style="width:100%">
 		            <div class="container">
 		                <div class="row">
-		                    <div class="footer-col col-md-5">
-		                    	<h4>What We Do</h4>
-		                        <p>UNDP works throughout the ECIS region to improve governance and reduce conflict. This visualization is designed to allow for the high level tracking of various indicators, showing both where progress is being made, and where further efforts are required.</p>
-		                    </div>
-		                    <div class="footer-col col-md-3">
+							<div class="footer-col col-md-6">
+								<h4>About this Visualization</h4>
+								<p>Originally conceptualized as a way to promote the work of a large inter-governmental organization in the ECIS region, political sensitivity meant it could not be released in the manner originally planned. To make sure it did not go completely to waste, I have published it here in the hopes that others may be inspired, find use for the code, and/or even learn something about a largely misunderstood part of the world.</p>
+							</div>
+		                    <div class="footer-col col-md-6">
 		                        <br>
-		                        <h4>Follow us</h4>
+		                        <h4>Get in touch!</h4>
 		                        <!-- Twitter -->
-		                        <a href="https://twitter.com/UNDPEurasia" data-toggle="tooltip" title="Twitter" target="_blank" class="share-btn twitter">
+		                        <a href="https://twitter.com/mrbrettromero" data-toggle="tooltip" title="Twitter" target="_blank" class="share-btn twitter">
 		                            <i class="fa fa-twitter"></i>
 		                        </a>
 
 		                        <!-- Facebook -->
-		                        <a href="https://web.facebook.com/UNDPinEuropeandCIS/?_rdr" data-toggle="tooltip" title="Facebook" target="_blank" class="share-btn facebook">
+		                        <a href="https://www.facebook.com/brett.romero.9" data-toggle="tooltip" title="Facebook" target="_blank" class="share-btn facebook">
 		                            <i class="fa fa-facebook"></i>
 		                        </a>
 
 		                        <!-- Page -->
-		                        <a href="http://www.eurasia.undp.org/content/rbec/en/home.html" data-toggle="tooltip" title="UNDP Kosovo" target="_blank" class="share-btn home">
+		                        <a href="http://brettromero.com" data-toggle="tooltip" title="brettromero.com" target="_blank" class="share-btn home">
 		                            <i class="fa fa-home"></i>
 		                        </a>
 		                        <br><br>
-		                    </div>
-		                    <div class="footer-col col-md-4">
-		                        <div class="row">
-									<p style="padding-top:3em">References to Kosovo in this visualization shall be understood to be in the context of Security Council Resolution 1244 (1999).</p>
-		                                <!--<a href="http://www.eurasia.undp.org/content/rbec/en/home.html" target="_blank"><img src="./static/images/undp-logo.png" alt="" class="partner-img img-responsive"></a>-->
-		                        </div>
 		                    </div>
 		                </div>
 		            </div>
